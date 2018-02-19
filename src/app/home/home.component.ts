@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PushService } from '../push.service';
-import { SwPush } from '@angular/service-worker;'
+import { SwPush } from '@angular/service-worker'
 
 @Component({
   selector: 'app-home',
