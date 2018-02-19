@@ -16,7 +16,17 @@ export class PushService {
 this.channel = this.pusher.subscribe('my-channel');
     
    }
+newMessage(subscription) {
 
+    let body = {
+      subscription: subscription
+    }
+    let headers = new Headers()
+    headers.append('Content-Type', 'application/json')
+    return this.http.post('routes/newmessage', body, { headers: headers })
+      .map(res => res.json());
+
+  }
   pushTrigger(message){
 
     let headers = new Headers();

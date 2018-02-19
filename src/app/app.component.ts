@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { SwPush } from '@angular/service-worker';
 import { ConfigService } from './services/config.service';
+import { PushService } from './push.service'
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,7 @@ import { ConfigService } from './services/config.service';
 
 
 export class AppComponent {
-  constructor(private configservice: ConfigService, private swPush: SwPush) {
+  constructor(private configservice: ConfigService, private swPush: SwPush, private pushService:PushService) {
 
 
   }
@@ -26,6 +27,7 @@ export class AppComponent {
 
     }).then(pushSubscription => {
       localStorage.setItem('pushsubscription',JSON.stringify(pushSubscription));
+   
       console.log(pushSubscription)
     })
 
