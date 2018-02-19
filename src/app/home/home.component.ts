@@ -26,7 +26,7 @@ message:string;
 
 
   }
-  sendMessage(message){
+  sendMessage(){
     console.log(this.message)
     let txtMessage = {
       message: this.message
