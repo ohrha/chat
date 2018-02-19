@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PushService } from '../push.service';
+import { SwPush } from '@angular/service-worker;'
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,7 @@ export class HomeComponent implements OnInit {
 recievedMessage:string;
 messages: string[] = [];
 
-  constructor( private pushService:PushService) {
+  constructor( private pushService:PushService, private swPush:SwPush) {
       this.pushService.channel.bind('my-event', (message) => {
       console.log(message);
       this.recievedMessage = message.message;
