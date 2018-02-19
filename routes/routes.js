@@ -50,7 +50,7 @@ console.log(req.body.message)
     res.json({success: true, message: "Message Recieved..."})
 })
 
-  
+  function sendNotification (pushSubscription, payload) {
     webpush.sendNotification(pushSubscription, payload)
       .then(function (response) {
           if(error)throw err;
@@ -59,6 +59,7 @@ console.log(req.body.message)
           }
      
       })
+  }
       
   
 module.exports = router;
