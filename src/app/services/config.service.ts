@@ -7,5 +7,10 @@ export class ConfigService {
   private _config = environment.config; 
 
   constructor() { }
+get(key:any){
 
+  return this._config[key];
+
+
+}
 }

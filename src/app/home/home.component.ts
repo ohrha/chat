@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PushService } from '../push.service';
-import { SwPush } from '@angular/service-worker'
+import { SwPush } from '@angular/service-worker';
+import { ConfigService } from '../services/config.service';
 
 @Component({
   selector: 'app-home',
@@ -10,9 +11,10 @@ import { SwPush } from '@angular/service-worker'
 export class HomeComponent implements OnInit {
 
 recievedMessage:string;
+VAPID_PUBLIC_KEY:string;
 messages: string[] = [];
 
-  constructor( private pushService:PushService, private swPush:SwPush) {
+  constructor( private pushService:PushService, private swPush:SwPush, private  configservice:ConfigService) {
       this.pushService.channel.bind('my-event', (message) => {
       console.log(message);
       this.recievedMessage = message.message;
@@ -24,7 +26,13 @@ messages: string[] = [];
 message:string;
   ngOnInit() {
 
+    this.swPush.requestSubscription({
+        serverPublicKey: this.VAPID_PUBLIC_KEY
+  
+    }).then(pushSubscription=>{
 
+      console.log(pushSubscription)
+    })
 
   }
   sendMessage(){
