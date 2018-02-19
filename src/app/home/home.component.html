@@ -25,11 +25,12 @@
   </div>
     <div class = "col s3">
   </div>
-  <div class = "col s6" *ngFor="let message of messages" style="text-align:center;">
-     <p class = "flow-text align-center animated fadeIn">
-     
-       {{message}}
-     </p>
+  <div class = "col s6"  style="text-align:center;">
+         <ul class="collection" *ngFor="let message of messages">
+        <li class="collection-item dismissable"><div>{{message}}<a href="#!" class="secondary-content"><i class="material-icons">chevron</i></a></div></li>
+        
+      </ul>
+    
     
   </div>
   </div>
