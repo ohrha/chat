@@ -25,4 +25,5 @@ this.channel = this.pusher.subscribe('my-channel');
     .map(res=>res.json())
 
   }
+}
 
