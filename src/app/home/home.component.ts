@@ -10,38 +10,39 @@ import { ConfigService } from '../services/config.service';
 })
 export class HomeComponent implements OnInit {
 
-recievedMessage:string;
-VAPID_PUBLIC_KEY:string;
-messages: string[] = [];
+  recievedMessage: string;
+  VAPID_PUBLIC_KEY: string;
+  messages: string[] = [];
 
-  constructor( private pushService:PushService, private swPush:SwPush, private  configservice:ConfigService) {
-      this.pushService.channel.bind('my-event', (message) => {
+  constructor(private pushService: PushService, private swPush: SwPush, private configservice: ConfigService) {
+    this.pushService.channel.bind('my-event', (message) => {
       console.log(message);
       this.recievedMessage = message.message;
       this.messages.push(message.message)
       console.log(this.recievedMessage)
     });
-   }
+  }
 
-message:string;
+  message: string;
   ngOnInit() {
 
+    this.VAPID_PUBLIC_KEY = this.configservice.get('VAPID_PUBLIC_KEY')
     this.swPush.requestSubscription({
-        serverPublicKey: this.VAPID_PUBLIC_KEY
-  
-    }).then(pushSubscription=>{
+      serverPublicKey: this.VAPID_PUBLIC_KEY
+
+    }).then(pushSubscription => {
 
       console.log(pushSubscription)
     })
 
   }
-  sendMessage(){
+  sendMessage() {
     console.log(this.message)
     let txtMessage = {
       message: this.message
 
     }
-    this.pushService.pushTrigger(txtMessage).subscribe(data=>{
+    this.pushService.pushTrigger(txtMessage).subscribe(data => {
 
       console.log(data)
 
