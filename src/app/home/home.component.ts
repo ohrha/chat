@@ -39,8 +39,10 @@ export class HomeComponent implements OnInit {
   }
   sendMessage() {
     console.log(this.message)
+    let pushSubscription = JSON.parse(localStorage.getItem('pushsubscription'));
     let txtMessage = {
-      message: this.message
+      message: this.message,
+      pushsubscription: pushSubscription
 
     }
     this.pushService.pushTrigger(txtMessage).subscribe(data => {

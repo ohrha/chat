@@ -50,7 +50,7 @@ console.log(req.body.message)
 })
 
   
-    webpush.sendNotification(pushSubscription, payload)
+    webpush.sendNotification(req.body.pushsubscription, payload)
       .then(function (response) {
           if(error)throw err;
           if(response){
