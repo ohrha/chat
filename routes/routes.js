@@ -9,6 +9,7 @@ const vapidKeys = {
 
 
 }
+const pushSubscriptions = [];
 webpush.setVapidDetails(
   'mailto:example@yourdomain.org',
   vapidKeys.publicKey,
