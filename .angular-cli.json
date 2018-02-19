@@ -20,11 +20,9 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css",
-        "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"
+        "styles.css"
       ],
-      "scripts": ["https://code.jquery.com/jquery-3.2.1.min.js",
-      "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"],
+      "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
