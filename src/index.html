@@ -20,21 +20,7 @@
 
   <script type="text/javascript" src="/assets/mean.js"></script>
 </head>
-<script>
 
-    // Enable pusher logging - don't include this in production
-    Pusher.logToConsole = true;
-
-    var pusher = new Pusher('f756d847238c8314427d', {
-      cluster: 'us2',
-      encrypted: true
-    });
-
-    var channel = pusher.subscribe('my-channel');
-    channel.bind('my-event', function(data) {
-      alert(data.message);
-    });
-  </script>
 
 <body>
   <app-root></app-root>
