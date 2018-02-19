@@ -13,6 +13,7 @@ import { environment } from '../environments/environment';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PushService } from './push.service';
+import { ConfigService } from './services/config.service';
 
 const appRoutes=[
   {
@@ -33,7 +34,7 @@ const appRoutes=[
     FormsModule
     
   ],
-  providers: [PushService],
+  providers: [PushService, ConfigService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
