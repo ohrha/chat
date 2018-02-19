@@ -9,11 +9,11 @@ const routes     = require('./routes/routes');
 var app = express();
 
 app.use(cors());
-app.use(express.static(__dirname,'dist'));
+app.use(express.static(path.join(__dirname,'dist')));
 app.use(bodyParser.json({limit:'50mb'}));
 app.use('/routes',routes);
 app.get('*',(req,res)=>{
-
+ 
     res.sendFile(path.join(__dirname,'dist/index.html'))
 
 });

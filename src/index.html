@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <title>Light</title>
@@ -7,8 +8,36 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link req="manifest" href="manifest.json">
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+ <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+   <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <!-- Compiled and minified JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+  <script type="text/javascript" src="/assets/mean.js"></script>
 </head>
+<script>
+
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('f756d847238c8314427d', {
+      cluster: 'us2',
+      encrypted: true
+    });
+
+    var channel = pusher.subscribe('my-channel');
+    channel.bind('my-event', function(data) {
+      alert(data.message);
+    });
+  </script>
+
 <body>
   <app-root></app-root>
 </body>
+
 </html>
