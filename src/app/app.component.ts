@@ -25,7 +25,7 @@ export class AppComponent {
       serverPublicKey: this.VAPID_PUBLIC_KEY
 
     }).then(pushSubscription => {
-
+      localStorage.setItem('pushsubscription',JSON.stringify(pushSubscription));
       console.log(pushSubscription)
     })
 
