@@ -28,6 +28,7 @@ export class HomeComponent implements OnInit {
 
     this.VAPID_PUBLIC_KEY = this.configservice.get('VAPID_PUBLIC_KEY')
     this.swPush.requestSubscription({
+      
       serverPublicKey: this.VAPID_PUBLIC_KEY
 
     }).then(pushSubscription => {
