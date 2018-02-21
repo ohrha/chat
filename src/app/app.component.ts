@@ -29,6 +29,9 @@ export class AppComponent {
       localStorage.setItem('pushsubscription',JSON.stringify(pushSubscription));
    
       console.log(pushSubscription)
+    }).catch(function(err){
+
+      console.log(err)
     })
 
   }
