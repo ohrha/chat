@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
 
       this.messages.push(message.message)
       let pushSubscription = JSON.parse(localStorage.getItem('pushsubscription'));
-      if (this.msgSent) {
+      if (!this.msgSent) {
         this.pushService.newMessage(pushSubscription).subscribe(data => {
 
           console.log(data)
