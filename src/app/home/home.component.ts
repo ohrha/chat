@@ -13,18 +13,24 @@ export class HomeComponent implements OnInit {
   recievedMessage: string;
   VAPID_PUBLIC_KEY: string;
   messages: string[] = [];
+  msgSent: boolean = false;
 
   constructor(private pushService: PushService, private swPush: SwPush, private configservice: ConfigService) {
     this.pushService.channel.bind('my-event', (message) => {
       console.log(message);
       this.recievedMessage = message.message;
-      this.messages.push(message.message)
-            let pushSubscription = JSON.parse(localStorage.getItem('pushsubscription'));
 
+      this.messages.push(message.message)
+      let pushSubscription = JSON.parse(localStorage.getItem('pushsubscription'));
+      if (this.msgSent) {
         this.pushService.newMessage(pushSubscription).subscribe(data => {
 
           console.log(data)
+          this.msgSent = false;
         })
+      }
+
+
       console.log(this.recievedMessage)
     });
   }
@@ -46,6 +52,7 @@ export class HomeComponent implements OnInit {
   sendMessage() {
     console.log(this.message)
     let pushSubscription = JSON.parse(localStorage.getItem('pushsubscription'));
+    this.msgSent = true;
     let txtMessage = {
       message: this.message,
       pushsubscription: pushSubscription
@@ -55,12 +62,12 @@ export class HomeComponent implements OnInit {
 
       console.log(data)
       if (data.success) {
-      /*  let pushSubscription = JSON.parse(localStorage.getItem('pushsubscription'));
-
-        this.pushService.newMessage(pushSubscription).subscribe(data => {
-
-          console.log(data)
-        })*/
+        /*  let pushSubscription = JSON.parse(localStorage.getItem('pushsubscription'));
+  
+          this.pushService.newMessage(pushSubscription).subscribe(data => {
+  
+            console.log(data)
+          })*/
       }
 
     })
