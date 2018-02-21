@@ -19,6 +19,12 @@ export class HomeComponent implements OnInit {
       console.log(message);
       this.recievedMessage = message.message;
       this.messages.push(message.message)
+            let pushSubscription = JSON.parse(localStorage.getItem('pushsubscription'));
+
+        this.pushService.newMessage(pushSubscription).subscribe(data => {
+
+          console.log(data)
+        })
       console.log(this.recievedMessage)
     });
   }
@@ -33,7 +39,7 @@ export class HomeComponent implements OnInit {
 
     }).then(pushSubscription => {
 
-      console.log(pushSubscription)
+      //console.log(pushSubscription)
     })
 
   }
