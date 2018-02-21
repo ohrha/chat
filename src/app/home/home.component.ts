@@ -55,12 +55,12 @@ export class HomeComponent implements OnInit {
 
       console.log(data)
       if (data.success) {
-        let pushSubscription = JSON.parse(localStorage.getItem('pushsubscription'));
+      /*  let pushSubscription = JSON.parse(localStorage.getItem('pushsubscription'));
 
         this.pushService.newMessage(pushSubscription).subscribe(data => {
 
           console.log(data)
-        })
+        })*/
       }
 
     })
