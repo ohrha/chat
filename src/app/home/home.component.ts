@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit {
 
   message: string;
   ngOnInit() {
-
+/*
     this.VAPID_PUBLIC_KEY = this.configservice.get('VAPID_PUBLIC_KEY')
     this.swPush.requestSubscription({
 
@@ -49,7 +49,7 @@ export class HomeComponent implements OnInit {
 
       //console.log(pushSubscription)
     })
-
+*/
   }
   sendMessage() {
     console.log(this.message)

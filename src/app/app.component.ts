@@ -11,7 +11,7 @@ import { PushService } from './push.service'
 
 
 export class AppComponent {
-  constructor(private configservice: ConfigService, private swPush: SwPush, private pushService:PushService) {
+  constructor(private configservice: ConfigService, private swPush: SwPush, private pushService: PushService) {
 
 
   }
@@ -21,15 +21,15 @@ export class AppComponent {
   ngOnInit() {
     this.VAPID_PUBLIC_KEY = this.configservice.get('VAPID_PUBLIC_KEY')
     console.log(this.VAPID_PUBLIC_KEY)
-        this.swPush.requestSubscription({
-      
+    this.swPush.requestSubscription({
+
       serverPublicKey: this.VAPID_PUBLIC_KEY
 
     }).then(pushSubscription => {
-      localStorage.setItem('pushsubscription',JSON.stringify(pushSubscription));
-   
+      localStorage.setItem('pushsubscription', JSON.stringify(pushSubscription));
+
       console.log(pushSubscription)
-    }).catch(function(err){
+    }).catch(function (err) {
 
       console.log(err)
     })
