@@ -16,12 +16,15 @@ export class HomeComponent implements OnInit {
   msgSent: boolean = false;
 
   constructor(private pushService: PushService, private swPush: SwPush, private configservice: ConfigService) {
+    
     this.pushService.channel.bind('my-event', (message) => {
       console.log(message);
+      console.log(this.msgSent)
       this.recievedMessage = message.message;
 
       this.messages.push(message.message)
       let pushSubscription = JSON.parse(localStorage.getItem('pushsubscription'));
+
       if (!this.msgSent) {
         this.pushService.newMessage(pushSubscription).subscribe(data => {
 
@@ -60,16 +63,12 @@ export class HomeComponent implements OnInit {
       pushsubscription: pushSubscription
 
     }
+
     this.pushService.pushTrigger(txtMessage).subscribe(data => {
 
       console.log(data)
       if (data.success) {
-        /*  let pushSubscription = JSON.parse(localStorage.getItem('pushsubscription'));
-  
-          this.pushService.newMessage(pushSubscription).subscribe(data => {
-  
-            console.log(data)
-          })*/
+ 
       }
 
     })
