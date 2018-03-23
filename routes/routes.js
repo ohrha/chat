@@ -53,16 +53,7 @@ router.post('/newuser', (req,res)=>{
         }
 
     } )
-    User.addUser(newUser, (err,user)=>{
 
-        if(user){
-
-            if()
-
-        }
-        
-
-    })
 
 })
 router.post('/authenticate', (req, res) => {
