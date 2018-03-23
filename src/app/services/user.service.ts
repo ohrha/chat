@@ -7,7 +7,7 @@ export class UserService {
 
   constructor(private http:Http) { }
 
-  authenticate(userdetails){
+  login(userdetails){
 
     let headers = new Headers;
     headers.append('Content-Type', 'application/json');

@@ -25,34 +25,34 @@ var pusher = new Pusher({
     encrypted: true
 });
 
-router.post('/newuser', (req,res)=>{
+router.post('/newuser', (req, res) => {
 
-    let newUser = new ChatUser ({
+    let newUser = new ChatUser({
 
         name: req.body.name,
         password: req.body.password
 
     })
 
-    ChatUser.findOne({name:req.body.name}, (err, user)=>{
+    ChatUser.findOne({ name: req.body.name }, (err, user) => {
 
         if (err) throw err;
-        if(user){
+        if (user) {
 
-            res.json({success: false, message: "User already exists"})
+            res.json({ success: false, message: "User already exists" })
 
-        }else{ 
-            ChatUser.addUser(newUser, (err,user)=>{
+        } else {
+            ChatUser.addUser(newUser, (err, user) => {
 
-                if(err){
-                    res.json({success: false, message: "User registration failed...", err: err})
-                }else{
-                    res.json({success: true, message: "User successfully registered", user})
+                if (err) {
+                    res.json({ success: false, message: "User registration failed...", err: err })
+                } else {
+                    res.json({ success: true, message: "User successfully registered", user })
                 }
             })
         }
 
-    } )
+    })
 
 
 })
@@ -60,9 +60,42 @@ router.post('/authenticate', (req, res) => {
 
     const username = req.body.username;
     const password = req.body.password;
+    ChatUser.getUserByUsername(username, (err, user) => {
 
+        if (err) throw err;
+        if (!user) {
 
+            res.json({ success: false, message: "User not found..." })
 
+        } else {
+
+            ChatUser.comparePassword(password, user.password, (err, isMatch) => {
+
+                if (err) throw err;
+                if (isMatch) {
+                    const token = jwt.sign({ data: user }, config.secret, {
+
+                        expiresIn: 604800 //1 week
+
+                    });
+
+                    res.json({
+                        success: true, token: 'JWT ' + token, user: {
+                            id: user._id,
+                            
+                            username: user.username
+                        
+
+                        }
+                    });
+                } else {
+                    res.json({ success: false, message: 'Wrong Password...' });
+                }
+
+            })
+        }
+
+    })
 })
 router.post('/newmessage', (req, res) => {
 

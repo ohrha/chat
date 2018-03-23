@@ -16,6 +16,7 @@ import { PushService } from './push.service';
 import { UserService } from './services/user.service';
 import { ConfigService } from './services/config.service';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 const appRoutes=[
   {
@@ -23,6 +24,9 @@ const appRoutes=[
   }
   ,{
     path: 'login', component: LoginComponent
+  },
+  {
+    path:'register', component: RegisterComponent
   }
   ]
 @NgModule({
@@ -30,7 +34,8 @@ const appRoutes=[
     AppComponent,
     HomeComponent,
     NavbarComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
