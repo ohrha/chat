@@ -5,15 +5,15 @@ const webpush = require('web-push');
 
 const vapidKeys = {
     publicKey: "BGgWbdrI76rpqXQXmgTGWsnYHCj0lXGfkpNp8up0TeVZBXuecerKE55gqKayH8soWE7aioU1MheuEZXFsp-hkIs",
-    privateKey:"E8gzdDWmSHEXLrgyqs2oJGovtJbLMHydFnubfVcElT4"
+    privateKey: "E8gzdDWmSHEXLrgyqs2oJGovtJbLMHydFnubfVcElT4"
 
 
 }
 const pushSubscriptions = [];
 webpush.setVapidDetails(
-  'mailto:example@yourdomain.org',
-  vapidKeys.publicKey,
-  vapidKeys.privateKey
+    'mailto:example@yourdomain.org',
+    vapidKeys.publicKey,
+    vapidKeys.privateKey
 );
 var pusher = new Pusher({
     appId: '475223',
@@ -24,42 +24,43 @@ var pusher = new Pusher({
 });
 
 
-router.post('/newmessage', (req,res)=>{
+router.post('/newmessage', (req, res) => {
 
-     let notificationData ={};
-        notificationData.notification ={
-            title: "Ohrha",
-            icon:"../assets/icon512.png",
-            badge:"../assets/icon72.png",
-            body:"New Chat Message.",
-            requireInteraction:true,
-            vibrate:[300,100,400],
+    let notificationData = {};
 
-        }
-        sendNotification(req.body.subscription,JSON.stringify(notificationData));
-        
+    notificationData.notification = {
+        title: "Ohrha",
+        icon: "../assets/icon512.png",
+        badge: "../assets/icon72.png",
+        body: "New Chat Message.",
+        requireInteraction: true,
+        vibrate: [300, 100, 400],
+
+    }
+    sendNotification(req.body.subscription, JSON.stringify(notificationData));
+
 
 
 })
 router.post('/', (req, res) => {
 
-console.log(req.body.message)
+    console.log(req.body.message)
     pusher.trigger('my-channel', 'my-event', {
         "message": req.body.message
     });
-    res.json({success: true, message: "Message Recieved..."})
+    res.json({ success: true, message: "Message Recieved..." })
 })
 
-  function sendNotification (pushSubscription, payload) {
+function sendNotification(pushSubscription, payload) {
     webpush.sendNotification(pushSubscription, payload)
-      .then(function (response) {
-          if(error)throw err;
-          if(response){
-              console.log("pushsent")
-          }
-     
-      })
-  }
-      
-  
+        .then(function (response) {
+            if (error) throw err;
+            if (response) {
+                console.log("pushsent")
+            }
+
+        })
+}
+
+
 module.exports = router;

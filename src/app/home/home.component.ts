@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+import { ConfigService } from '../services/config.service';
 import { PushService } from '../push.service';
 import { SwPush } from '@angular/service-worker';
-import { ConfigService } from '../services/config.service';
+
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
+
+
 export class HomeComponent implements OnInit {
 
   recievedMessage: string;
@@ -21,8 +24,8 @@ export class HomeComponent implements OnInit {
       console.log(message);
       console.log(this.msgSent)
       this.recievedMessage = message.message;
-
       this.messages.push(message.message)
+
       let pushSubscription = JSON.parse(localStorage.getItem('pushsubscription'));
 
       if (!this.msgSent) {
@@ -42,18 +45,9 @@ export class HomeComponent implements OnInit {
 
   message: string;
   ngOnInit() {
-/*
-    this.VAPID_PUBLIC_KEY = this.configservice.get('VAPID_PUBLIC_KEY')
-    this.swPush.requestSubscription({
 
-      serverPublicKey: this.VAPID_PUBLIC_KEY
-
-    }).then(pushSubscription => {
-
-      //console.log(pushSubscription)
-    })
-*/
   }
+  
   sendMessage() {
     console.log(this.message)
     let pushSubscription = JSON.parse(localStorage.getItem('pushsubscription'));

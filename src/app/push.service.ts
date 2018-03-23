@@ -8,7 +8,9 @@ export class PushService {
 
   pusher: any;
   channel: any;
+  
   constructor(private http: Http) {
+
     this.pusher = new Pusher('f756d847238c8314427d', {
       cluster: 'us2',
       encrypted: true
