@@ -3,7 +3,7 @@ const router = express.Router();
 const Pusher = require('pusher');
 const webpush = require('web-push');
 const jwt = require('jsonwebtoken');
-const User = require('../models/user');
+const User = require('../models/chatuser');
 
 const vapidKeys = {
     publicKey: "BGgWbdrI76rpqXQXmgTGWsnYHCj0lXGfkpNp8up0TeVZBXuecerKE55gqKayH8soWE7aioU1MheuEZXFsp-hkIs",
