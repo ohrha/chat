@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const Pusher = require('pusher');
 const webpush = require('web-push');
+const jwt = require('jsonwebtoken');
+const User = require('../models/user');
 
 const vapidKeys = {
     publicKey: "BGgWbdrI76rpqXQXmgTGWsnYHCj0lXGfkpNp8up0TeVZBXuecerKE55gqKayH8soWE7aioU1MheuEZXFsp-hkIs",
@@ -23,7 +25,54 @@ var pusher = new Pusher({
     encrypted: true
 });
 
+router.post('/newuser', (req,res)=>{
 
+    let newUser = {
+
+        name: req.body.name,
+        password: req.body.password
+
+    }
+
+    User.find({name:req.body.name}, (err, user)=>{
+
+        if (err) throw err;
+        if(user){
+
+            res.json({success: false, message: "User already exists"})
+
+        }else{ 
+            User.addUser(newUser, (err,user)=>{
+
+                if(err){
+                    res.json({success: false, message: "User registration failed..."})
+                }else{
+                    res.json({success: true, message: "User successfully registered", user})
+                }
+            })
+        }
+
+    } )
+    User.addUser(newUser, (err,user)=>{
+
+        if(user){
+
+            if()
+
+        }
+        
+
+    })
+
+})
+router.post('/authenticate', (req, res) => {
+
+    const username = req.body.username;
+    const password = req.body.password;
+
+
+
+})
 router.post('/newmessage', (req, res) => {
 
     let notificationData = {};

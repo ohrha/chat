@@ -13,18 +13,24 @@ import { environment } from '../environments/environment';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PushService } from './push.service';
+import { UserService } from './services/user.service';
 import { ConfigService } from './services/config.service';
+import { LoginComponent } from './login/login.component';
 
 const appRoutes=[
   {
     path:'',component:HomeComponent
+  }
+  ,{
+    path: 'login', component: LoginComponent
   }
   ]
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    NavbarComponent
+    NavbarComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +40,7 @@ const appRoutes=[
     FormsModule
     
   ],
-  providers: [PushService, ConfigService],
+  providers: [PushService, ConfigService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
