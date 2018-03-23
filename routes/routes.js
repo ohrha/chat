@@ -45,7 +45,7 @@ router.post('/newuser', (req,res)=>{
             User.addUser(newUser, (err,user)=>{
 
                 if(err){
-                    res.json({success: false, message: "User registration failed..."})
+                    res.json({success: false, message: "User registration failed...", err: err})
                 }else{
                     res.json({success: true, message: "User successfully registered", user})
                 }
