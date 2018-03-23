@@ -12,7 +12,7 @@ const UserSchema = mongoose.Schema({
 
 })
 
-const User = module.exports = mongoose.model('User',UserSchema)
+const ChatUser = module.exports = mongoose.model('ChatUser',UserSchema)
 
 module.exports.addUser = function(newUser, callback){
   bcrypt.genSalt(10, (err, salt) => {

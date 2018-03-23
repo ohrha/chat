@@ -3,7 +3,7 @@ const router = express.Router();
 const Pusher = require('pusher');
 const webpush = require('web-push');
 const jwt = require('jsonwebtoken');
-const User = require('../models/chatuser');
+const ChatUser = require('../models/chatuser');
 
 const vapidKeys = {
     publicKey: "BGgWbdrI76rpqXQXmgTGWsnYHCj0lXGfkpNp8up0TeVZBXuecerKE55gqKayH8soWE7aioU1MheuEZXFsp-hkIs",
@@ -27,14 +27,14 @@ var pusher = new Pusher({
 
 router.post('/newuser', (req,res)=>{
 
-    let newUser = new User ({
+    let newUser = new ChatUser ({
 
         name: req.body.name,
         password: req.body.password
 
     })
 
-    User.findOne({name:req.body.name}, (err, user)=>{
+    ChatUser.findOne({name:req.body.name}, (err, user)=>{
 
         if (err) throw err;
         if(user){
@@ -42,7 +42,7 @@ router.post('/newuser', (req,res)=>{
             res.json({success: false, message: "User already exists"})
 
         }else{ 
-            User.addUser(newUser, (err,user)=>{
+            ChatUser.addUser(newUser, (err,user)=>{
 
                 if(err){
                     res.json({success: false, message: "User registration failed...", err: err})
