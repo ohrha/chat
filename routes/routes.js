@@ -27,14 +27,14 @@ var pusher = new Pusher({
 
 router.post('/newuser', (req,res)=>{
 
-    let newUser = {
+    let newUser = new User ({
 
         name: req.body.name,
         password: req.body.password
 
-    }
+    })
 
-    User.find({name:req.body.name}, (err, user)=>{
+    User.findOne({name:req.body.name}, (err, user)=>{
 
         if (err) throw err;
         if(user){
