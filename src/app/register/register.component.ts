@@ -24,9 +24,11 @@ login(){
       password: this.passWord
 
     }
+
     this.userService.login(userDetails).subscribe(data=>{
 
       console.log(data);
 
     })
+}
 }
