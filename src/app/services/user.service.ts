@@ -11,7 +11,7 @@ export class UserService {
 
     let headers = new Headers;
     headers.append('Content-Type', 'application/json');
-    return this.http.post('/authenticate',userdetails ,{headers:headers})
+    return this.http.post('routes/authenticate',userdetails ,{headers:headers})
     .map(res => res.json())
   }
   newUser(userdetails){
