@@ -15,10 +15,12 @@ export class AppComponent {
 
 
   }
+
   title = 'app';
   VAPID_PUBLIC_KEY: string;
 
   ngOnInit() {
+    
     this.VAPID_PUBLIC_KEY = this.configservice.get('VAPID_PUBLIC_KEY')
     console.log(this.VAPID_PUBLIC_KEY)
     this.swPush.requestSubscription({

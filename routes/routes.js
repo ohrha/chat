@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Pusher = require('pusher');
 const webpush = require('web-push');
+const config = require('../config/database');
 const jwt = require('jsonwebtoken');
 const ChatUser = require('../models/chatuser');
 
@@ -58,9 +59,11 @@ router.post('/newuser', (req, res) => {
 })
 router.post('/authenticate', (req, res) => {
 
-    const username = req.body.username;
+    const username = req.body.name;
     const password = req.body.password;
-    ChatUser.findOne({username:username}, (err, user) => {
+    console.log(password)
+    console.log(username)
+    ChatUser.findOne({name:username}, function(err,user) {
 
         if (err) throw err;
         if (!user) {
@@ -68,7 +71,7 @@ router.post('/authenticate', (req, res) => {
             res.json({ success: false, message: "User not found..." })
 
         } else {
-
+            console.log(user)
             ChatUser.comparePassword(password, user.password, (err, isMatch) => {
 
                 if (err) throw err;
@@ -89,7 +92,7 @@ router.post('/authenticate', (req, res) => {
                         }
                     });
                 } else {
-                    res.json({ success: false, message: 'Wrong Password...' });
+                    res.json({ success: false, message: 'Wrong Password...',  });
                 }
 
             })
