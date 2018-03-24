@@ -60,7 +60,7 @@ router.post('/authenticate', (req, res) => {
 
     const username = req.body.username;
     const password = req.body.password;
-    ChatUser.getUserByUsername(username, (err, user) => {
+    ChatUser.fineOne({username:username}, (err, user) => {
 
         if (err) throw err;
         if (!user) {
