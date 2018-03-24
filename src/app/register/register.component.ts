@@ -14,7 +14,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
   }
-login(){
+ submitDetails(){
 
     console.log(this.userName)
     console.log(this.passWord);
@@ -24,11 +24,13 @@ login(){
       password: this.passWord
 
     }
-
-    this.userService.login(userDetails).subscribe(data=>{
+    this.userService.newUser(userDetails).subscribe(data=>{
 
       console.log(data);
 
     })
-}
+
+
+  }
+
 }
