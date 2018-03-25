@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes, ActivatedRoute, Params} from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
+import { AuthGuard } from './auth.guard';
 
 
 
@@ -30,7 +31,7 @@ const appRoutes=[
     path:'register', component: RegisterComponent
   },
   {
-    path:'chat', component: ChatComponent
+    path:'chat', component: ChatComponent, canActivate:[AuthGuard]
   }
   ]
 @NgModule({
@@ -50,7 +51,7 @@ const appRoutes=[
     FormsModule
     
   ],
-  providers: [PushService, ConfigService, UserService],
+  providers: [PushService, ConfigService, UserService,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
