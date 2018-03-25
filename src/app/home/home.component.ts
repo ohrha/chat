@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
   VAPID_PUBLIC_KEY: string;
   messages: string[] = [];
   msgSent: boolean = false;
+  loginHome:boolean = true;
 
   constructor(private pushService: PushService, private swPush: SwPush, private configservice: ConfigService) {
     

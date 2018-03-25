@@ -1,3 +1,13 @@
+.appdescription{
+
+  
+font-size:16px;
+}
+.simplified{
+  font-style:italic;
+}
+
+
 /* label color */
    .input-field label {
      color: #000;

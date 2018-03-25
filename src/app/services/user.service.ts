@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http, } from '@angular/http';
+import { tokenNotExpired } from '@auth0/angular-jwt';
 import 'rxjs/add/operator/map';  //OBSERVABLE
 
 @Injectable()
