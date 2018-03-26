@@ -14,8 +14,11 @@
           <p class="animated fadeIn" *ngIf="loginFailed">Login Failed ({{errorMsg}})</p>-->
         </div>
         <div class="card-action">
-          <a [routerLink]="['/register']">Register</a>
-          <a [routerLink]="['/login']">Login</a>
+          <a *ngIf='!userservice.loggedIn()' [routerLink]="['/register']">Register</a>
+          <a *ngIf='!userservice.loggedIn()' [routerLink]="['/login']">Login</a>
+           <a *ngIf='userservice.loggedIn()' [routerLink]="['/chat']">Start Chatting!</a>
+
+
         </div>
       </div>
     </div>

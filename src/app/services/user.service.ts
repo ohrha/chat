@@ -14,6 +14,16 @@ export class UserService {
     return this.http.post('routes/authenticate',userdetails ,{headers:headers})
     .map(res => res.json())
   }
+  loggedIn(){
+
+    if(localStorage.getItem('id_token')){
+
+      return true
+
+    }
+    return false
+
+  }
   newUser(userdetails){
 
     let headers = new Headers;

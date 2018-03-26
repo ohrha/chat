@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ConfigService } from '../services/config.service';
 import { PushService } from '../push.service';
 import { SwPush } from '@angular/service-worker';
+import { UserService } from '../services/user.service';
 
 
 @Component({
