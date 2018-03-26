@@ -3,9 +3,11 @@
 
 
     $(".button-collapse").sideNav({
+      menuWidth: 300, // Default is 240
           closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
 
     });
+     $('.collapsible').collapsible();
 
   })
 
@@ -33,7 +35,7 @@
 <nav>
   <div class="nav-wrapper blue-grey lighten-3">
     <a href="#!" class="brand-logo black-text center">o))</a>
-    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+    <a href="#" data-activates="slide-out" class="button-collapse" id="closemenu"><i class="material-icons">menu</i></a>
     <ul class="right hide-on-med-and-down">
       <li><a *ngIf="!userservice.loggedIn()" [routerLink]="['register']" class="black-text">Register</a></li>
       <li>
@@ -43,11 +45,11 @@
       <li><a *ngIf="userservice.loggedIn()" (click)="logOut()" class="black-text">Logut</a></li>
 
     </ul>
-    <ul class="side-nav" id="mobile-demo">
-      <li><a *ngIf="!userservice.loggedIn()" [routerLink]="['register']" class="black-text">Register</a></li>
-      <li><a *ngIf="!userservice.loggedIn()" [routerLink]="['login']" class="black-text">Login</a></li>
-      <li><a [routerLink]="['chat']" class="black-text">Chat</a></li>
-      <li><a *ngIf="userservice.loggedIn()" (click)="logOut()" class="black-text">Logout</a></li>
+    <ul class="side-nav" id="slide-out" (click)="closeSidebar()">
+      <li><a *ngIf="!userservice.loggedIn()" [routerLink]="['register']" class="black-text sidenav-close">Register</a></li>
+      <li><a *ngIf="!userservice.loggedIn()" [routerLink]="['login']" class="black-text sidenav-close">Login</a></li>
+      <li><a [routerLink]="['chat']" class="black-text sidenav-close">Chat</a></li>
+      <li><a *ngIf="userservice.loggedIn()" (click)="logOut()" class="black-text sidenav-close">Logout</a></li>
 
     </ul>
   </div>

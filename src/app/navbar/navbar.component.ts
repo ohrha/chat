@@ -12,6 +12,10 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
   }
+  closeSidebar(){
+
+    document.getElementById('closemenu').click();
+  }
   logOut(){
 
     localStorage.removeItem('id_token')
