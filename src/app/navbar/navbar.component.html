@@ -5,6 +5,7 @@
     $(".button-collapse").sideNav();
 
   })
+
 </script>
 <!--
 <nav>
@@ -31,14 +32,20 @@
     <a href="#!" class="brand-logo black-text center">o))</a>
     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
     <ul class="right hide-on-med-and-down">
-      <li><a [routerLink]="['register']" class="black-text">Register</a></li>
-      <li><a [routerLink]="['login']" class="black-text">Login</a></li>
-      <li><a [routerLink]="['chat']" class = "black-text">Chat</a></li>
+      <li><a *ngIf="!userservice.loggedIn()" [routerLink]="['register']" class="black-text">Register</a></li>
+      <li>
+        <a*ngIf="!userservice.loggedIn()" [routerLink]="['login']" class="black-text">Login</a>
+      </li>
+      <li><a [routerLink]="['chat']" class="black-text">Chat</a></li>
+      <li><a *ngIf="userservice.loggedIn()" (click)="logOut()" class="black-text">Loout</a></li>
+
     </ul>
     <ul class="side-nav" id="mobile-demo">
-      <li><a [routerLink]="['register']" class="black-text">Register</a></li>
-      <li><a [routerLink]="['login']" class="black-text">Login</a></li>
-      <li><a [routerLink]="['chat']" class = "black-text">Chat</a></li>
+      <li><a *ngIf="!userservice.loggedIn()" [routerLink]="['register']" class="black-text">Register</a></li>
+      <li><a *ngIf="!userservice.loggedIn()" [routerLink]="['login']" class="black-text">Login</a></li>
+      <li><a [routerLink]="['chat']" class="black-text">Chat</a></li>
+      <li><a *ngIf="userservice.loggedIn()" (click)="logOut()" class="black-text">Logout</a></li>
+
     </ul>
   </div>
 </nav>
