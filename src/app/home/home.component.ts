@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
   msgSent: boolean = false;
   loginHome:boolean = true;
 
-  constructor(private pushService: PushService, private swPush: SwPush, private configservice: ConfigService) {
+  constructor(private pushService: PushService, private swPush: SwPush, private configservice: ConfigService, public userservice:UserService) {
     
     this.pushService.channel.bind('my-event', (message) => {
       console.log(message);
